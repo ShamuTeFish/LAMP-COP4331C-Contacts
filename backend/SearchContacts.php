@@ -5,14 +5,14 @@
 	$searchResults = "";
 	$searchCount = 0;
 
-	$conn = new mysqli("localhost", "TheBeast", "COP##4331", "PROJECT");
+	$conn = new mysqli("localhost", "TheBeast", "COP##4331C", "PROJECT");
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
 	} 
 	else
 	{
-		$stmt = $conn->prepare("select Name from Users);
+		$stmt = $conn->prepare("SELECT first_name, last_name, email, phone FROM Users WHERE userId=? AND (first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR phone LIKE ?)");
 		$colorName = "%" . $inData["search"] . "%";
 		$stmt->bind_param("ss", $colorName, $inData["userId"]);
 		$stmt->execute();
@@ -26,7 +26,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["Name"] . '"';
+			$searchResults .= '{"firstName":"' . $row["first_name"] . '","lastName":"' . $row["last_name"] . '","email":"' . $row["email"] . '","phone":"' . $row["phone"] . '"}';
 		}
 		
 		if( $searchCount == 0 )
