@@ -1,5 +1,9 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $inData = getRequestInfo();
 
 $login = $inData["login"];
@@ -37,7 +41,7 @@ else
         returnWithError($conn->error);
     } else
     {
-        $stmt->bind_param("ssss", $firstName, $lastName, $login, $hashedPassword);
+        $stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
         if (!$stmt->execute()) {
             if ($conn->errno == 1062) { 
                 returnWithError("Login already exists");
