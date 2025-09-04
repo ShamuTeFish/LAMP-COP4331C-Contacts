@@ -1,9 +1,5 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 $inData = getRequestInfo();
 
 $login = $inData["login"];
@@ -11,7 +7,7 @@ $password = $inData["password"];
 $firstName = $inData["first_name"];
 $lastName = $inData["last_name"];
 
-$hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
 
 // Database connection
 $conn = new mysqli("localhost", "TheBeast", "COP##4331C", "COP4331");
