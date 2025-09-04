@@ -13,11 +13,18 @@
 	else
 	{
 		$stmt = $conn->prepare("SELECT first_name, last_name, email, phone FROM Users WHERE userId=? AND (first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR phone LIKE ?)");
-		$colorName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("ss", $colorName, $inData["userId"]);
-		$stmt->execute();
+		$searchTerm = "%" . $inData["search"] . "%";
+		$stmt->bind_param("issss", $inData["userId"], $searchTerm, $searchTerm, $searchTerm, $searchTerm);
+		
+		if (!$stmt->execute()) {
+			returnWithError("SQL Execution Error: " . $stmt->error);
+		}
 		
 		$result = $stmt->get_result();
+
+		if ($result->num_rows === 0) {
+			returnWithError("No Records Found");
+		}
 		
 		while($row = $result->fetch_assoc())
 		{
