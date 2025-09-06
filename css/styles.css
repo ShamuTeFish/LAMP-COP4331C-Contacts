@@ -1,0 +1,14 @@
+#loginFields
+{
+    margin: 5% 15% 5% 15%;
+    border-style: "outset";
+    border-color: black;
+}
+
+#loginHead
+{
+    font-size: 35px;
+    font-family: "Audiowide", sans-serif;
+    margin-left: 10%;
+    text-align: left;
+}
