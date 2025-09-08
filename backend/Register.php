@@ -6,6 +6,12 @@ error_reporting(E_ALL);
 
 $inData = getRequestInfo();
 
+// Validate required fields
+if (!isset($inData["login"]) || !isset($inData["password"]) || !isset($inData["first_name"]) || !isset($inData["last_name"])) {
+    returnWithError("All fields are required: login, password, first_name, last_name");
+    exit();
+}
+
 $login = $inData["login"];
 $password = $inData["password"];
 $firstName = $inData["first_name"];
@@ -50,8 +56,17 @@ else
             }
         } else {
             $stmt->close();
+
+            //Frontend needs to keep track of newly registered user's ID
+            $idStmt = $conn->prepare("SELECT Id FROM Users WHERE Login =? AND Password =?");
+            $idStmt->bind_param("ss", $inData["login"], $inData["password"]);
+            $idStmt->execute();
+            $result = $idStmt->get_result();
+
+            $row = $result->fetch_assoc();
+            returnWithInfo($row['Id']);
+            $idStmt->close();
             $conn->close();
-            returnWithError(""); 
         }
     }
     
@@ -80,6 +95,12 @@ function sendResultInfoAsJson($obj)
 function returnWithError($err)
 {
     $retValue = '{"error":"' . $err . '"}';
+    sendResultInfoAsJson($retValue);
+}
+
+function returnWithInfo($id)
+{
+    $retValue = '{"id":' . $id . ',"error":""}';
     sendResultInfoAsJson($retValue);
 }
 ?>
