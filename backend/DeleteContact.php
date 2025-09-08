@@ -5,7 +5,7 @@ $inData = getRequestInfo();
 $contactId = $inData["contactId"];
 $userId = $inData["userId"];
 
-$conn = new mysqli("localhost", "TheBeast", "COP##4331C", "PROJECT");
+$conn = new mysqli("localhost", "TheBeast", "COP##4331C", "COP4331");
 if ($conn->connect_error) 
 {
     returnWithError($conn->connect_error);
@@ -13,7 +13,7 @@ if ($conn->connect_error)
 else
 {
     // First verify the contact belongs to the user
-    $checkStmt = $conn->prepare("SELECT Id FROM Users WHERE Id = ? AND userId = ?");
+    $checkStmt = $conn->prepare("SELECT Id FROM Contacts WHERE Id = ? AND userId = ?");
     $checkStmt->bind_param("ii", $contactId, $userId);
     $checkStmt->execute();
     $result = $checkStmt->get_result();
@@ -26,7 +26,7 @@ else
     }
     $checkStmt->close();
     
-    $stmt = $conn->prepare("DELETE FROM Users WHERE Id = ? AND userId = ?");
+    $stmt = $conn->prepare("DELETE FROM Contacts WHERE Id = ? AND userId = ?");
     if (!$stmt) {
         returnWithError($conn->error);
     } else

@@ -5,14 +5,14 @@
 	$searchResults = "";
 	$searchCount = 0;
 
-	$conn = new mysqli("localhost", "TheBeast", "COP##4331C", "PROJECT");
+	$conn = new mysqli("localhost", "TheBeast", "COP##4331C", "COP4331");
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT first_name, last_name, email, phone FROM Users WHERE userId=? AND (first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR phone LIKE ?)");
+		$stmt = $conn->prepare("SELECT first_name, last_name, email, phone FROM Contacts WHERE userId=? AND (first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR phone LIKE ?)");
 		$searchTerm = "%" . $inData["search"] . "%";
 		$stmt->bind_param("issss", $inData["userId"], $searchTerm, $searchTerm, $searchTerm, $searchTerm);
 		

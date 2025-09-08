@@ -8,14 +8,14 @@ $lastName = $inData["lastName"];
 $email = $inData["email"];
 $phone = $inData["phone"];
 
-$conn = new mysqli("localhost", "TheBeast", "COP##4331C", "PROJECT");
+$conn = new mysqli("localhost", "TheBeast", "COP##4331C", "COP4331");
 if ($conn->connect_error) 
 {
     returnWithError($conn->connect_error);
 } 
 else
 {
-    $stmt = $conn->prepare("INSERT INTO Users (userId, first_name, last_name, email, phone) VALUES(?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO Contacts (userId, first_name, last_name, email, phone) VALUES(?, ?, ?, ?, ?)");
     if (!$stmt) {
         returnWithError($conn->error);
     } else
