@@ -5,6 +5,9 @@ const contactFile = "placeholder.html";
 let userId = 0;
 let fName = '';
 let lName = '';
+let warningImg = document.createElement('img');
+warningImg.src = 'css/warning-sign-30915_1280.png';
+warningImg.id = 'warningImg';
 
 function refreshValues()
 {
@@ -21,6 +24,7 @@ function login()
     //Grabbing login info from HTML file and setting error text to default
     let login = document.getElementById("loginEmail").value;
     let password = document.getElementById("loginPassword").value;
+
     document.getElementById("loginErr").innerHTML = "";
 
     let temp = {login:login, password:password};
@@ -43,15 +47,16 @@ function login()
             if(this.readyState == 4 && this.status == 200)
             {
                 let jsonObject = JSON.parse(xhr.responseText);
-                userId = jsonObject.Id;
+                let error = jsonObject.error;
 
-                //Incorrect email/password
-                if(userId < 1)
+                if(error !== "")
                 {
-                    document.getElementById("loginErr").innerHTML = "Incorrect email or password. Please try again.";
+                    document.getElementById("loginErr").innerHTML = error;
+                    document.getElementById("loginErr").appendChild(warningImg);
                     return;
                 }
 
+                userId = jsonObject.Id;
                 fName = jsonObject.first_name;
                 lName = jsonObject.last_name;
 
@@ -76,6 +81,25 @@ function logout()
 	refreshValues();
 	document.cookie = "fName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 	window.location.href = "index.html";
+}
+
+function parseEmail(email)
+{
+   let emailSplit = parseEmail.split("@");
+
+    //Emails cannot have more than 2 @
+    if(emaiLSplit.length == 2)
+    {
+        let localPart = emailSplit[0];
+        let domain = emailSplit[1];
+
+        //If email domain is an IP Address...
+        if(domain.charAt(0) == '[' && domain.charAt(domain.length - 1) == ']')
+        {
+        }
+    }
+
+    return false;
 }
 
 function register()
