@@ -4,7 +4,6 @@
 
     <head>
         <title>Placeholder - Login</title>
-        <!-- Fix/implement files and related urls as needed...-->
         <script type ="text/javascript" src="js/projectcode.js"></script>
         <link href="css/styles.css" rel ="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
@@ -13,15 +12,14 @@
     <body id = "loginBody">
 
         <div id = "loginFields">
-            <h2 id = "loginHead">Login</h2>
-            <p>Email</p>
-            <input type="text" id="loginEmail" placeholder="Email"> <br>
-            <p>Password</p>
-            <input type="text" id="loginPassword" placeholder ="Password"> <br>
+            <h1 id = "loginHead">Login</h1>
+            <h2 id="loginInstruct">Please enter your login credentials.</h2>
+            <input type="text" id="loginEmail" class="field" placeholder="Email">
+            <input type="password" id="loginPassword" class="field" placeholder ="Password">
             <button type="button" id="loginButton" onclick="login();">Sign In</button>
-            <span id="loginErr"></span>
+            <p id="regText">New User? <a href="register.html" id ="regLink">Create an account!</p></a>
+            <span id="loginErr" tabindex="-1"></span> <br>
+            <p id="attribution">Background Attribution: <a href="https://www.vecteezy.com/free-vector/water" id ="attrLink">Water Vectors by Vecteezy</a></p>
         </div>
-
-        <br><p>New User? <a href="register.html">Register here!</p> 
     </body>
 </html>
