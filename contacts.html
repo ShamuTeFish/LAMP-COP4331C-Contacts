@@ -1,0 +1,47 @@
+<!-- Created By Hiroki Yoshida for COP 4331-->
+<html>
+
+<head>
+    <title> Contacts </title>
+    <link href="css/styles.css" rel="stylesheet">
+    <script type ="text/javascript" src="js/projectcode.js"></script>
+</head>
+
+
+<body onload="readCookie()" id = "ContactsMain">
+
+
+    <div id = "ContactsHeader">
+        <h1> Search Contacts</h1>
+        <input type="text" id="SearchCon" placeholder="Search">
+        <button type="button" id="Logout" onclick="logout()"> Logout </button>
+
+
+    </div>
+
+    <div id = "SearchList">
+        <h2> Contact List </h2>
+
+
+
+    </div>
+    
+    <div id = "CreateContact">
+        <button type = "button" id="CreateCon" onclick="CreateContactPop()">Create Contact</button>
+    </div>
+    <!-- ContactPopup should be hidden by default In CSS-->
+    <div id = "ContactPopupMake">
+        <input type="text" id="PopNameF" placeholder="First Name">
+        <input type="text" id="PopNameL" placeholder="Last Name">
+        <input type="text" id="PopEmail" placeholder="Email">
+        <input type="text" id="PopPhone" placeholder="Phone Number">
+        <button type = "button" id="ContactComplete" onclick="SubmitContact()">Submit</button>
+    </div>
+
+    
+
+</body>
+
+
+
+</html>

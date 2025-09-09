@@ -12,3 +12,23 @@
     margin-left: 10%;
     text-align: left;
 }
+
+
+
+#SearchList
+{
+    background-color: aquamarine;
+
+
+}
+
+.ContactTab
+{
+text-align: left;
+}
+
+#ContactPopup
+{
+    visibility: hidden;
+
+}
