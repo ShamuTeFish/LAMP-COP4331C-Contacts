@@ -196,7 +196,7 @@ let ContPhone = document.getElementById("PopPhone").value;
 
 
 if(contactEdited){
-    const Contact = contactEdited
+    const Contact = contactEdited;
  Contact.ContNameF = ContNameF;
  Contact.ContNameL = ContNameL;
  Contact.ContEmail = ContEmail;
@@ -236,8 +236,8 @@ ContactTab.className = "ContactTab";
 Contactname.readOnly = true;
 Contactname.value = Contact.ContNameF + " " + Contact.ContNameL;
 
-EditBut.onclick = () => EditCont(Contact , Contactname)
-DeleteBut.onclick = () => DeleteCont(ContactTab)
+EditBut.onclick = () => EditCont(Contact , Contactname);
+DeleteBut.onclick = () => DeleteCont(ContactTab);
 
 ContactTab.appendChild(Contactname);
 ContactTab.appendChild(EditBut);
@@ -252,10 +252,10 @@ function EditCont(Contact, Contactname)
 contactEdited = Contact;
 contactEditedname = Contactname;
 
-document.getElementById("PopNameF").value = Contact.ContNameF
-document.getElementById("PopNameL").value = Contact.ContNameL
-document.getElementById("PopEmail").value = Contact.ContEmail
-document.getElementById("PopPhone").value = Contact.ContPhone
+document.getElementById("PopNameF").value = Contact.ContNameF;
+document.getElementById("PopNameL").value = Contact.ContNameL;
+document.getElementById("PopEmail").value = Contact.ContEmail;
+document.getElementById("PopPhone").value = Contact.ContPhone;
 
 document.getElementById("ContactPopup").style.visibility = "visible";
 }
