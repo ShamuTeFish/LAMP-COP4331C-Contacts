@@ -1,14 +1,118 @@
+
+/*index.html section*/
+
+#loginBody
+{
+    background-image: url("watter_effect.jpg");
+    background-color: rgba(255, 255, 255, 0.475);
+    background-blend-mode: lighten;
+}
+
 #loginFields
 {
+    background-image: linear-gradient(to bottom right, rgba(186, 222, 232, 1) 0%, rgba(15, 155, 186, 1) 100%);
+    border-style: ridge;
+    border-color: white;
+    border-radius: 10px;
+    border-width: 10px;
     margin: 5% 15% 5% 15%;
-    border-style: "outset";
-    border-color: black;
 }
 
 #loginHead
 {
-    font-size: 35px;
+    color: black;
     font-family: "Audiowide", sans-serif;
+    font-size: 35px;
+    text-align: center;
+}
+
+#loginInstruct
+{
+    color: black;
+    font-family: Arial, sans-serif;
+    margin-bottom: 10px;
+    text-align: center;
+
+}
+
+.field
+{
+    border-radius: 7px;
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    height: 7%;
+    margin-bottom: 15px;
     margin-left: 10%;
-    text-align: left;
+    margin-right: 10%;
+    text-align: center;
+    width: 80%;
+}
+
+#loginButton
+{
+    background-color: rgb(239, 132, 10);
+    border-color: rgb(52, 100, 109);
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 5px;
+    color: white;
+    float: left;
+    font-size: 14pt;
+    font-weight: bold;
+    height: 9%;
+    margin-left: 45%;
+    margin-top: 10px;
+    width: 10%;
+}
+
+#attribution
+{
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+    margin-left: 5%;
+}
+
+#regText, #regLink
+{
+    font-family: Arial, sans-serif;
+    font-size: 15pt;
+    font-weight: bold;
+    height: 7%;
+    margin-right: 5%;
+    margin-top: 40px;
+    text-align: right;
+}
+
+#loginErr
+{
+    color: rgb(112, 6, 6);
+    display: block;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 15pt;
+    text-align: center;
+}
+
+#warningImg
+{
+    margin-left: 10px;
+    height: 20px;
+    width: 20px;
+}
+
+.field:focus, #loginButton:focus, #regLink:focus, #attrLink:focus
+{
+    outline: none;
+    border: 5px solid rgb(172, 92, 0);
+}   
+
+.field:hover, #loginButton:hover
+{
+    outline: none;
+    border: 3px solid rgb(236, 221, 0);
+}
+
+#regLink:hover, #attrLink:hover
+{
+    background-color:  rgba(236, 220, 0, 0.71);
 }
