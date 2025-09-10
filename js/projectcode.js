@@ -264,3 +264,4 @@ function DeleteCont(ContactTab)
 {
  ContactTab.remove();
 }
+
