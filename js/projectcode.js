@@ -5,10 +5,9 @@ const contactFile = "placeholder.html";
 let userId = 0;
 let fName = '';
 let lName = '';
-
-//Related to Contact's
-let contactEdited = null;
-let contactEditedname = null;
+let warningImg = document.createElement('img');
+warningImg.src = 'css/warning-sign-30915_1280.png';
+warningImg.id = 'warningImg';
 
 function refreshValues()
 {
@@ -25,6 +24,7 @@ function login()
     //Grabbing login info from HTML file and setting error text to default
     let login = document.getElementById("loginEmail").value;
     let password = document.getElementById("loginPassword").value;
+
     document.getElementById("loginErr").innerHTML = "";
 
     let temp = {login:login, password:password};
@@ -47,15 +47,16 @@ function login()
             if(this.readyState == 4 && this.status == 200)
             {
                 let jsonObject = JSON.parse(xhr.responseText);
-                userId = jsonObject.Id;
+                let error = jsonObject.error;
 
-                //Incorrect email/password
-                if(userId < 1)
+                if(error !== "")
                 {
-                    document.getElementById("loginErr").innerHTML = "Incorrect email or password. Please try again.";
+                    document.getElementById("loginErr").innerHTML = error;
+                    document.getElementById("loginErr").appendChild(warningImg);
                     return;
                 }
 
+                userId = jsonObject.Id;
                 fName = jsonObject.first_name;
                 lName = jsonObject.last_name;
 
@@ -80,6 +81,25 @@ function logout()
 	refreshValues();
 	document.cookie = "fName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 	window.location.href = "index.html";
+}
+
+function parseEmail(email)
+{
+   let emailSplit = parseEmail.split("@");
+
+    //Emails cannot have more than 2 @
+    if(emaiLSplit.length == 2)
+    {
+        let localPart = emailSplit[0];
+        let domain = emailSplit[1];
+
+        //If email domain is an IP Address...
+        if(domain.charAt(0) == '[' && domain.charAt(domain.length - 1) == ']')
+        {
+        }
+    }
+
+    return false;
 }
 
 function register()
@@ -178,90 +198,3 @@ function readCookie()
         document.getElementById("fullName").innerHTML = firstName + " " + lastName;
 	}
 }
-
-function CreateContactPop()
-{
-document.getElementById("ContactPopup").style.visibility = "visible";
-
-}
-
-function SubmitContact()
-{
-
-
-let ContNameF = document.getElementById("PopNameF").value;
-let ContNameL = document.getElementById("PopNameL").value;
-let ContEmail = document.getElementById("PopEmail").value;
-let ContPhone = document.getElementById("PopPhone").value;
-
-
-if(contactEdited){
-    const Contact = contactEdited;
- Contact.ContNameF = ContNameF;
- Contact.ContNameL = ContNameL;
- Contact.ContEmail = ContEmail;
- Contact.ContPhone = ContPhone;
-
-contactEditedname.value = Contact.ContNameF + " " + Contact.ContNameL;
-
-contactEdited = null;
-contactEditedname = null;
-}
-else{
-
-const Contact = {
-    ContID: Date.now(), //Gets the current time from 1970 in miliseconds, Good for unique ID's.
-    ContNameF,
-    ContNameL,
-    ContEmail,
-    ContPhone
-    };
-    CreateContact(Contact);
-}
-
-
-document.getElementById("ContactPopup").style.visibility = "hidden";
-}
-
-function CreateContact(Contact)
-{
-
-const ContactTab = document.createElement("div");
-const Contactname = document.createElement("input");
-const EditBut = document.createElement("button");
-const DeleteBut = document.createElement("button");
-
-ContactTab.className = "ContactTab";
-
-Contactname.readOnly = true;
-Contactname.value = Contact.ContNameF + " " + Contact.ContNameL;
-
-EditBut.onclick = () => EditCont(Contact , Contactname);
-DeleteBut.onclick = () => DeleteCont(ContactTab);
-
-ContactTab.appendChild(Contactname);
-ContactTab.appendChild(EditBut);
-ContactTab.appendChild(DeleteBut);
-
-document.getElementById("SearchList").appendChild(ContactTab);
-
-}
-
-function EditCont(Contact, Contactname)
-{
-contactEdited = Contact;
-contactEditedname = Contactname;
-
-document.getElementById("PopNameF").value = Contact.ContNameF;
-document.getElementById("PopNameL").value = Contact.ContNameL;
-document.getElementById("PopEmail").value = Contact.ContEmail;
-document.getElementById("PopPhone").value = Contact.ContPhone;
-
-document.getElementById("ContactPopup").style.visibility = "visible";
-}
-
-function DeleteCont(ContactTab)
-{
- ContactTab.remove();
-}
-

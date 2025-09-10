@@ -27,12 +27,16 @@ background-image: url("watter_effect.jpg");
 
 #ContactPopupMake
 {
+    position: fixed;
     visibility: hidden;
     display: flex;
     align-items: center;
+    justify-content: center;
+    z-index: 1000; 
     width: 50%;
     margin-left: 25%;
     margin-right: 25%;
+    height: 75%;
 
 }
 
