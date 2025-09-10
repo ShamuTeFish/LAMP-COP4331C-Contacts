@@ -1,3 +1,10 @@
+function logout()
+{
+	refreshValues();
+	document.cookie = "fName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+	window.location.href = "index.html";
+}
+
 function CreateContactPop()
 {
 document.getElementById("ContactPopup").style.visibility = "visible";
